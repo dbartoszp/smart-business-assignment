@@ -1,7 +1,7 @@
 export const UserTableFilters = () => {
   return (
     <>
-      <h2 className="text-slate-500 text-xl py-2 pl-10">Filters:</h2>
+      <h2 className="text-slate-500 text-xl py-2 pl-10">Filter by:</h2>
       <div className="px-4 pb-4 grid grid-cols-2 md:grid-cols-4 gap-2">
         <input
           className="bg-slate-100 border-slate-800 p-1"

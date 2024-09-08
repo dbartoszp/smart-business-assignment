@@ -1,9 +1,10 @@
 import { User } from "@/app/utils/types";
 import { TableCell } from "./TableCell/TableCell";
+import clsx from "clsx";
 
-interface TableRowProps extends User {
+type TableRowProps = User & {
   title?: boolean;
-}
+};
 
 export const TableRow = ({
   name,
@@ -13,11 +14,21 @@ export const TableRow = ({
   title = false,
 }: TableRowProps) => {
   return (
-    <div className={`flex flex-row ${title ? "bg-slate-200 text-center" : ""}`}>
-      <TableCell>{name}</TableCell>
-      <TableCell>{username}</TableCell>
-      <TableCell>{email}</TableCell>
-      <TableCell>{phone}</TableCell>
+    <div
+      className={clsx("flex flex-row", { "bg-slate-200 text-center": title })}
+    >
+      <TableCell>
+        <p>{name}</p>
+      </TableCell>
+      <TableCell>
+        <p>{username}</p>
+      </TableCell>
+      <TableCell>
+        <p>{email}</p>
+      </TableCell>
+      <TableCell>
+        <p>{phone}</p>
+      </TableCell>
     </div>
   );
 };

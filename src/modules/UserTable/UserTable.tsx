@@ -5,14 +5,15 @@ import { UserTableHeader } from "./UserTableHeader/UserTableHeader";
 import { useAppSelector } from "@/app/lib/hooks";
 import { UserTableSkeleton } from "./UserTableSkeleton";
 import { UserTableFooter } from "./UserTableFooter/UserTableFooter";
+import { RootState } from "@/app/lib/store";
 
 export const UserTable = () => {
   const { filteredUsers, loading, users } = useAppSelector(
-    (state) => state.users
+    (state: RootState) => state.users
   );
 
   return (
-    <div className="shadow-md md:w-7/12 w-10/12 mt-16">
+    <div className="shadow-md md:w-7/12 w-10/12 mt-16 bg-slate-50">
       <UserTableHeader />
       <UserTableFilters />
       <div className="overflow-x-auto">

@@ -1,4 +1,5 @@
 import { User, UsersState } from "@/app/utils/types";
+import { usersArraySchema } from "@/app/utils/userSchema.schema";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: UsersState = {
@@ -68,8 +69,13 @@ const usersSlice = createSlice({
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const data: User[] = await response.json();
-  return data;
+  const data = await response.json();
+
+  const users = usersArraySchema.safeParse(data);
+  if (users.success) {
+    return users.data;
+  }
+  throw users.error;
 });
 
 export const {

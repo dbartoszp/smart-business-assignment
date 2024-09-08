@@ -26,7 +26,7 @@ export const userSchema = z.object({
   email: z.string().email(),
   address: addressSchema,
   phone: z.string(),
-  website: z.string().url(),
+  website: z.string(),
   company: companySchema,
 });
 

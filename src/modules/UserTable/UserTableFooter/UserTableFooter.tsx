@@ -11,7 +11,7 @@ export const UserTableFooter = ({
     <div className="p-3">
       {currentCount > 0 ? (
         <p>
-          Showing <strong>{currentCount}</strong> of{" "}
+          Showing <strong>{currentCount}</strong> out of{" "}
           <strong>{totalCount}</strong> users
         </p>
       ) : (

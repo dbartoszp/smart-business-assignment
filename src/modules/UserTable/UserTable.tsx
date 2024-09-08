@@ -2,20 +2,17 @@
 import { TableRow } from "./TableRow/TableRow";
 import { UserTableFilters } from "./UserTableFilters/UserTableFilters";
 import { UserTableHeader } from "./UserTableHeader/UserTableHeader";
-import { useEffect } from "react";
-import { fetchUsers } from "@/app/lib/features/users/userSlice";
-import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
+import { useAppSelector } from "@/app/lib/hooks";
+import { UserTableSkeleton } from "./UserTableSkeleton";
+import { UserTableFooter } from "./UserTableFooter/UserTableFooter";
 
 export const UserTable = () => {
-  const dispatch = useAppDispatch();
-  const { users } = useAppSelector((state) => state.users);
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+  const { filteredUsers, loading, users } = useAppSelector(
+    (state) => state.users
+  );
 
   return (
-    <div className="shadow-md md:w-9/12 w-10/12 mt-24">
+    <div className="shadow-md md:w-7/12 w-10/12 mt-16">
       <UserTableHeader />
       <UserTableFilters />
       <div className="overflow-x-auto">
@@ -27,7 +24,8 @@ export const UserTable = () => {
             username="Username"
             phone="Phone"
           />
-          {users.map((user) => (
+          {loading && <UserTableSkeleton />}
+          {filteredUsers.map((user) => (
             <TableRow
               key={user.email}
               email={user.email}
@@ -38,6 +36,10 @@ export const UserTable = () => {
           ))}
         </div>
       </div>
+      <UserTableFooter
+        totalCount={users.length}
+        currentCount={filteredUsers.length}
+      />
     </div>
   );
 };

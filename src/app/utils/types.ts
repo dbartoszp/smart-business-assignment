@@ -7,6 +7,7 @@ export type User = {
 
 export type UsersState = {
   users: User[];
+  filteredUsers: User[];
   filters: {
     name: string;
     username: string;
